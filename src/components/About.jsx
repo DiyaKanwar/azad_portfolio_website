@@ -94,7 +94,7 @@ const About = () => {
           <div className="w-full h-full mx-auto lg:mx-0 group">
             <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-amber-500/10 transform hover:scale-105 transition-all duration-500 ease-out">
               <img
-                src="/profile2.jpg"
+                src="/Profile2.jpg"
                 loading="lazy"
                 alt="Azad portrait"
                 className="w-full h-full object-cover transition-all duration-700 group-hover:brightness-110"
