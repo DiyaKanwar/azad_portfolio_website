@@ -109,15 +109,12 @@ const Hero = () => {
 
       {/* Main Content */}
       <div className="relative z-30 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-       <div className="inline-block mb-8 group">
-  <div className="relative px-8 sm:px-10 py-2.5 sm:py-4 rounded-full text-xs sm:text-sm font-medium tracking-[0.2em] sm:tracking-[0.3em] backdrop-blur-2xl bg-gradient-to-r from-slate-900/60 to-slate-800/50 border border-amber-400/50 text-amber-300 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-amber-300/50 hover:bg-gradient-to-r hover:from-amber-950/40 hover:to-amber-900/30 cursor-default transform hover:scale-105">
-    <span className="relative z-10 group-hover:text-[#FBBF24] transition-colors duration-500">
-      VISUAL ARTIST
-    </span>
-    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-500/30 to-yellow-400/30 opacity-0 group-hover:opacity-100 transition-all duration-700 blur-md pointer-events-none"></div>
-    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/20 to-orange-400/20 opacity-0 group-hover:opacity-60 transition-all duration-700 blur-sm pointer-events-none"></div>
-  </div>
+       <div className="inline-flex items-center mb-8">
+  <span className="text-amber-400 text-sm font-bold tracking-widest uppercase px-6 py-2 border border-amber-400/40 rounded-full bg-amber-500/10">
+    VISUAL ARTIST
+  </span>
 </div>
+
 
 
         <div className="mb-12">
