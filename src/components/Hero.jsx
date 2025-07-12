@@ -34,66 +34,61 @@ const Hero = () => {
 />
 
 
-      {/* Background Overlay Effects - Optimized for Performance */}
-      {/* Desktop Effects */}
-      <div className="absolute inset-0 z-10 pointer-events-none hidden sm:block">
-        {/* Overlays */}
-        <div className="absolute inset-0 bg-black/45"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950/70 via-transparent to-gray-900/80"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/60 via-transparent to-slate-800/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-gray-900/40 to-slate-950/70"></div>
+     {/* Background Overlay Effects */}
+<div className="absolute inset-0 z-10 pointer-events-none">
+  {/* Subtle cinematic dark overlays */}
+  <div className="absolute inset-0 bg-black/45"></div>
+  <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30"></div>
+  <div className="absolute inset-0 bg-gradient-to-br from-gray-950/60 via-transparent to-gray-900/70 sm:bg-gradient-to-br"></div>
 
-        {/* Ambient Glow */}
-        <div className="absolute top-1/3 left-1/3 w-72 h-72 bg-gradient-to-br from-amber-500/15 to-orange-500/10 rounded-full blur-2xl animate-breathing opacity-50"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-gradient-to-bl from-orange-500/10 to-amber-600/8 rounded-full blur-xl animate-breathing opacity-35" style={{ animationDelay: '5s' }}></div>
+  {/* Ambient breathing lights (fewer and softer on small screens) */}
+  <div className="absolute top-1/3 left-1/3 w-60 h-60 sm:w-80 sm:h-80 bg-gradient-to-br from-amber-500/15 to-orange-500/10 rounded-full blur-2xl sm:blur-3xl animate-breathing opacity-50 sm:opacity-70"></div>
+  <div className="hidden sm:block absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-bl from-orange-500/10 to-amber-600/8 rounded-full blur-2xl animate-breathing opacity-50" style={{ animationDelay: '5s' }}></div>
+  <div className="hidden sm:block absolute top-2/3 left-1/6 w-60 h-60 bg-gradient-to-tr from-yellow-500/10 to-amber-500/6 rounded-full blur-2xl animate-breathing opacity-40" style={{ animationDelay: '8s' }}></div>
 
-        {/* Aurora Background Layers */}
-        <div className="absolute inset-0 animate-aurora-move">
-          <div className="absolute w-full h-full bg-gradient-to-r from-transparent via-[#f3c96930] to-transparent blur-2xl opacity-40 rotate-12 scale-125"></div>
-        </div>
-        <div className="absolute inset-0 animate-aurora-move-reverse">
-          <div className="absolute w-full h-full bg-gradient-to-l from-transparent via-[#fbbf2420] to-transparent blur-xl opacity-30 rotate-[-8deg] scale-110"></div>
-        </div>
+  {/* Animated brush strokes (disabled on mobile) */}
+  <div className="hidden sm:block absolute top-16 left-1/2 w-80 h-3 bg-gradient-to-r from-transparent via-amber-400/25 to-transparent blur-sm animate-brush-stroke opacity-40"></div>
+  <div className="hidden sm:block absolute bottom-20 right-1/3 w-60 h-2 bg-gradient-to-l from-transparent via-orange-400/15 to-transparent blur-sm animate-brush-stroke opacity-30" style={{ animationDelay: '6s' }}></div>
 
-        {/* Subtle Mouse Glow */}
-        <div
-          className="absolute inset-0 transition-opacity duration-1000 opacity-50 pointer-events-none"
-          style={{
-            background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(245, 158, 11, 0.12) 0%, rgba(243, 201, 105, 0.07) 15%, rgba(245, 158, 11, 0.05) 30%, transparent 55%)`
-          }}
-        />
+  {/* Aurora background layers (reduced for mobile) */}
+  <div className="absolute inset-0 animate-aurora-move hidden sm:block">
+    <div className="absolute w-full h-full bg-gradient-to-r from-transparent via-[#f3c96920] to-transparent blur-2xl opacity-50 rotate-12 scale-125"></div>
+  </div>
+  <div className="absolute inset-0 animate-aurora-move-reverse hidden sm:block">
+    <div className="absolute w-full h-full bg-gradient-to-l from-transparent via-[#fbbf2415] to-transparent blur-xl opacity-35 rotate-[-8deg] scale-110"></div>
+  </div>
 
-        {/* Sparkles */}
-        {[
-          { top: '15%', left: '75%', delay: '0s', size: 'w-1 h-1' },
-          { top: '25%', left: '20%', delay: '1s', size: 'w-0.5 h-0.5' },
-          { top: '45%', left: '85%', delay: '2s', size: 'w-1.5 h-1.5' },
-          { top: '65%', left: '30%', delay: '3s', size: 'w-1 h-1' },
-          { top: '80%', left: '65%', delay: '4s', size: 'w-1 h-1' },
-        ].map((s, i) => (
-          <div
-            key={i}
-            className={`absolute ${s.size} bg-amber-300 rounded-full animate-sparkle opacity-70`}
-            style={{
-              top: s.top,
-              left: s.left,
-              animationDelay: s.delay,
-              boxShadow: '0 0 6px rgba(245,158,11,0.9), 0 0 12px rgba(245,158,11,0.5)'
-            }}
-          />
-        ))}
+  {/* Interactive cursor glow - softer on mobile */}
+  <div
+    className="absolute inset-0 transition-opacity duration-1000 opacity-40 sm:opacity-60 pointer-events-none"
+    style={{
+      background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(245, 158, 11, 0.12) 0%, rgba(243, 201, 105, 0.06) 15%, rgba(245, 158, 11, 0.04) 30%, rgba(245, 158, 11, 0.02) 45%, transparent 60%)`
+    }}
+  />
 
-        {/* Few Light Floaters */}
-        <div className="absolute top-[55%] left-[35%] w-5 h-5 bg-gradient-to-br from-amber-400/25 to-orange-500/15 blur-md rounded-[60%_40%_80%_20%] animate-float-slow opacity-50" />
-        <div className="absolute top-[25%] right-[30%] w-4 h-4 bg-gradient-to-br from-orange-400/20 to-amber-500/10 blur-md rounded-[80%_20%_60%_40%] animate-float-slow opacity-45" style={{ animationDelay: '3s' }} />
-      </div>
+  {/* Subtle sparkles (keep a few, no box-shadow on mobile) */}
+  {[
+    { top: '15%', left: '75%', delay: '0s', size: 'w-1 h-1' },
+    { top: '45%', left: '85%', delay: '2s', size: 'w-1.5 h-1.5' },
+    { top: '65%', left: '30%', delay: '3s', size: 'w-1 h-1' },
+  ].map((s, i) => (
+    <div
+      key={i}
+      className={`absolute ${s.size} bg-amber-300 rounded-full animate-sparkle opacity-70`}
+      style={{
+        top: s.top,
+        left: s.left,
+        animationDelay: s.delay,
+        boxShadow: window.innerWidth >= 640 ? '0 0 8px rgba(245,158,11,1), 0 0 16px rgba(245,158,11,0.5)' : 'none',
+      }}
+    />
+  ))}
 
-      {/* Mobile Glow - lightweight static */}
-      <div className="absolute inset-0 z-10 pointer-events-none sm:hidden">
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="absolute top-1/2 left-1/2 w-60 h-60 bg-amber-500/10 rounded-full blur-xl -translate-x-1/2 -translate-y-1/2 opacity-40"></div>
-      </div>
+  {/* Minimal floating particles (reduced count and size) */}
+  <div className="absolute top-[55%] left-[35%] w-4 h-4 sm:w-6 sm:h-6 bg-gradient-to-br from-amber-400/20 to-orange-500/10 blur-md rounded-[60%_40%_80%_20%] animate-float-slow opacity-50" />
+  <div className="absolute top-[25%] right-[30%] w-3 h-3 sm:w-5 sm:h-5 bg-gradient-to-br from-orange-400/15 to-amber-500/10 blur-md rounded-[80%_20%_60%_40%] animate-float-slow opacity-40" style={{ animationDelay: '3s' }} />
+</div>
+
 
       {/* Main Content */}
       <div className="relative z-30 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
