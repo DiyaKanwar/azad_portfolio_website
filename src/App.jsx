@@ -21,7 +21,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0F] text-white font-sans selection:bg-amber-500/20 selection:text-amber-200">
+    <div className="overflow-x-hidden min-h-screen bg-[#0A0A0F] text-white font-sans selection:bg-amber-500/20 selection:text-amber-200">
       <Navbar isScrolled={isScrolled} />
       <main>
         <Hero />

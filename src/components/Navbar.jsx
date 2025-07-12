@@ -84,7 +84,8 @@ const Navbar = ({ isScrolled }) => {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-700 ease-out ${
+      <nav className={`fixed inset-x-0 top-0 z-50 w-full overflow-x-hidden transition-all duration-700 ease-out ${
+
         isScrolled
           ? 'bg-gradient-to-b from-gray-800/95 to-gray-900/95 shadow-md shadow-black/20 backdrop-blur-md border-b border-gray-700/20'
           : 'bg-transparent'
@@ -148,7 +149,8 @@ const Navbar = ({ isScrolled }) => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden transition-all duration-500 ease-out ${
+      <div className={`lg:hidden transition-all duration-500 ease-out overflow-x-hidden ${
+
           isMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible overflow-hidden'
         }`}>
           <div className="bg-gradient-to-b from-gray-800/98 to-gray-900/98 backdrop-blur-xl border-t border-gray-700/30 shadow-xl">
