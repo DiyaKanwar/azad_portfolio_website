@@ -25,13 +25,14 @@ const Hero = () => {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden max-w-full overflow-x-hidden">
       {/* Background Image Layer */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url("/Herobg.jpg")',
-          backgroundAttachment: 'fixed'
-        }}
-      />
+      <div 
+  className="absolute inset-0 z-0 bg-center bg-no-repeat bg-contain sm:bg-cover"
+  style={{
+    backgroundImage: 'url("/Herobg.jpg")',
+    backgroundAttachment: 'scroll'
+  }}
+/>
+
 
       {/* Background Overlay Effects - Optimized for Performance */}
       {/* Desktop Effects */}
