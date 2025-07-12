@@ -184,20 +184,21 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
-        <a
-          href="#about"
-          className="group flex flex-col items-center text-[#fbbf24]/80 hover:text-[#fbbf24] transition-all duration-700 cursor-pointer"
-        >
-          <div className="relative mb-4 w-8 h-14 border-2 border-[#fbbf24]/60 hover:border-[#fbbf24] rounded-full flex items-start justify-center overflow-hidden backdrop-blur-sm bg-black/20 group-hover:bg-black/30 transition-all duration-500">
-            <div className="w-1.5 h-4 bg-[#fbbf24] rounded-full animate-scroll-dot mt-2 group-hover:bg-amber-300 transition-colors duration-300"></div>
-          </div>
-          <span className="text-xs uppercase tracking-[0.4em] font-medium group-hover:text-[#fbbf24] transition-colors duration-500 opacity-90 group-hover:opacity-100">
-            DISCOVER MORE
-          </span>
-        </a>
-      </div>
+     {/* Scroll cue (desktop only) */}
+<div className="hidden sm:block absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
+  <a
+    href="#about"
+    className="group flex flex-col items-center text-[#fbbf24]/80 hover:text-[#fbbf24] transition-all duration-700 cursor-pointer"
+  >
+    <div className="relative mb-4 w-8 h-14 border-2 border-[#fbbf24]/60 hover:border-[#fbbf24] rounded-full flex items-start justify-center overflow-hidden backdrop-blur-sm bg-black/20 group-hover:bg-black/30 transition-all duration-500">
+      <div className="w-1.5 h-4 bg-[#fbbf24] rounded-full animate-scroll-dot mt-2 group-hover:bg-amber-300 transition-colors duration-300"></div>
+    </div>
+    <span className="text-xs uppercase tracking-[0.4em] font-medium group-hover:text-[#fbbf24] transition-colors duration-500 opacity-90 group-hover:opacity-100">
+      DISCOVER MORE
+    </span>
+  </a>
+</div>
+
 
       {/* Animation Styles */}
       <style>{`
