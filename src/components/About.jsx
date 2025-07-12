@@ -19,7 +19,7 @@ const skills = [
     title: 'Speed Painting Live Performance',
     description: 'Dynamic art created in real-time.'
   },
-  { icon: FaFilm, title: 'Film Direction', description: 'Cinematic visual storytelling' },
+  { icon: FaFilm, title: 'Film Art Direction', description: 'Cinematic visual storytelling' },
 ];
 
 const highlights = [
