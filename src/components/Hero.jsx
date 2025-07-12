@@ -123,35 +123,56 @@ const Hero = () => {
             emotion into color with each brushstroke, a moment, a vision, a story unfolding.
           </span>
         </p>
+{/* Button group */}
+<div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-10 sm:mt-16">
+  <a
+    href="#gallery"
+    className="group relative px-10 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-gray-900 font-bold text-lg rounded-2xl hover:from-amber-400 hover:to-amber-500 transition-all duration-500 shadow-md hover:shadow-amber-300/40 transform hover:scale-110 hover:-translate-y-2 border border-amber-400/30"
+  >
+    EXPLORE PORTFOLIO
+  </a>
 
-        <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
-          <a
-            href="#gallery"
-            className="group relative px-12 py-5 bg-gradient-to-r from-amber-500 to-amber-600 text-gray-900 font-bold text-lg rounded-2xl hover:from-amber-400 hover:to-amber-500 transition-all duration-500 shadow-md hover:shadow-amber-300/40 transform hover:scale-110 hover:-translate-y-2 border border-amber-400/30"
-          >
-            EXPLORE PORTFOLIO
-          </a>
-          <a
-            href="#resume"
-            className="group relative px-12 py-5 bg-transparent border-2 border-[#fbbf24]/40 text-[#fbbf24] font-semibold text-lg rounded-2xl hover:border-[#fbbf24] hover:bg-[#fbbf24]/10 transition-all duration-500 backdrop-blur-xl flex items-center justify-center transform hover:scale-110 hover:-translate-y-2 shadow-xl shadow-[#fbbf24]/10 hover:shadow-[#fbbf24]/30"
-          >
-            DOWNLOAD RESUME
-          </a>
-        </div>
+  <a
+    href="#resume"
+    className="group relative px-10 py-4 bg-transparent border-2 border-[#fbbf24]/40 text-[#fbbf24] font-semibold text-lg rounded-2xl hover:border-[#fbbf24] hover:bg-[#fbbf24]/10 transition-all duration-500 backdrop-blur-xl flex items-center justify-center transform hover:scale-110 hover:-translate-y-2 shadow-xl shadow-[#fbbf24]/10 hover:shadow-[#fbbf24]/30"
+  >
+    DOWNLOAD RESUME
+  </a>
+</div>
+
+{/* Scroll cue below buttons with spacing, not absolute */}
+{/* Scroll cue at bottom on large screens, still visible on mobile */}
+<div className="w-full flex justify-center">
+  <div className="hidden sm:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
+    <a
+      href="#about"
+      className="group flex flex-col items-center text-[#fbbf24]/60 hover:text-[#fbbf24] transition-all duration-700 cursor-pointer"
+    >
+      <div className="relative mb-3 w-7 h-12 border-2 border-[#fbbf24]/40 rounded-full flex items-start justify-center overflow-hidden">
+        <div className="w-1 h-3 bg-[#fbbf24] rounded-full animate-scroll-dot mt-2"></div>
       </div>
+      <span className="text-xs uppercase tracking-[0.4em] font-medium group-hover:text-[#fbbf24] transition-colors duration-500">
+        DISCOVER MORE
+      </span>
+    </a>
+  </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
-        <a
-          href="#about"
-          className="group flex flex-col items-center text-[#fbbf24]/60 hover:text-[#fbbf24] transition-all duration-700 cursor-pointer"
-        >
-          <div className="relative mb-3 w-7 h-12 border-2 border-[#fbbf24]/40 rounded-full flex items-start justify-center overflow-hidden">
-            <div className="w-1 h-3 bg-[#fbbf24] rounded-full animate-scroll-dot mt-2"></div>
-          </div>
-          <span className="text-xs uppercase tracking-[0.4em] font-medium group-hover:text-[#fbbf24] transition-colors duration-500">
-            DISCOVER MORE
-          </span>
-        </a>
+  {/* fallback for small screens */}
+  <div className="sm:hidden mt-8 flex justify-center">
+    <a
+      href="#about"
+      className="group flex flex-col items-center text-[#fbbf24]/60 hover:text-[#fbbf24] transition-all duration-700 cursor-pointer"
+    >
+      <div className="relative mb-3 w-7 h-12 border-2 border-[#fbbf24]/40 rounded-full flex items-start justify-center overflow-hidden">
+        <div className="w-1 h-3 bg-[#fbbf24] rounded-full animate-scroll-dot mt-2"></div>
+      </div>
+      <span className="text-xs uppercase tracking-[0.4em] font-medium group-hover:text-[#fbbf24] transition-colors duration-500">
+        DISCOVER MORE
+      </span>
+    </a>
+  </div>
+</div>
+
       </div>
 
       {/* Styles */}
