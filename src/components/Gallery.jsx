@@ -171,21 +171,34 @@ const VirtualizedGrid = React.memo(({ images, onImageClick, columns = 4, itemHei
     if (!container) return;
 
     calculateVisibleRange();
-    container.addEventListener('scroll', calculateVisibleRange, { passive: true });
+     let frame = null;
+ container.addEventListener('scroll', () => {
+   if (frame) cancelAnimationFrame(frame);
+   frame = requestAnimationFrame(calculateVisibleRange);
+ }, { passive: true });
 
     return () => {
-      container.removeEventListener('scroll', calculateVisibleRange);
+     container.removeEventListener('scroll', onScroll);
+
     };
   }, [calculateVisibleRange]);
 
   const { start, end } = visibleRange;
   const visibleImages = useMemo(() => images.slice(start, end), [images, start, end]);
+  useEffect(() => {
+  const preload = images.slice(end, end + columns * 2);
+  preload.forEach(({ src }) => {
+    const img = new Image();
+    img.src = src;
+  });
+}, [end, images, columns]);
+
   const offsetY = Math.floor(start / columns) * itemHeight;
 
   return (
     <div
       ref={containerRef}
-      className="h-[600px] overflow-y-auto gallery-scrollbar pr-2"
+      className="h-[400px] sm:h-[600px] overflow-y-auto gallery-scrollbar pr-2"
       role="grid"
       aria-rowcount={totalRows}
     >
