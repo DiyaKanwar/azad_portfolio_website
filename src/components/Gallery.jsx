@@ -360,7 +360,8 @@ const ImageModal = React.memo(({
               filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.7))',
               cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'zoom-in',
             }}
-            onMouseDown={onImageMouseDown}
+            onMouseDown={(e) => { e.stopPropagation(); onImageMouseDown(e); }}
+
             onDoubleClick={zoomLevel > 1 ? onZoomOut : onZoomIn}
             draggable={false}
             role="img"
@@ -519,14 +520,15 @@ const Gallery = () => {
     }
   }, [zoomLevel, imagePosition]);
 
-  const handleMouseMove = useCallback((e) => {
-    if (isDragging && zoomLevel > 1) {
-      setImagePosition({
-        x: e.clientX - dragStartRef.current.x,
-        y: e.clientY - dragStartRef.current.y,
-      });
-    }
-  }, [isDragging, zoomLevel]);
+ const handleMouseMove = useCallback((e) => {
+  if (isDragging && zoomLevel > 1) {
+    setImagePosition((prev) => ({
+      x: e.clientX - dragStartRef.current.x,
+      y: e.clientY - dragStartRef.current.y,
+    }));
+  }
+}, [isDragging, zoomLevel]);
+
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -534,49 +536,43 @@ const Gallery = () => {
 
   // --- Global Event Listeners (for modal) ---
 
-  // FIXED: Keyboard navigation and zoom - now properly checks if modal is open
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      // Only handle keyboard events when modal is open (selectedImage is not null)
-      if (!selectedImage) return;
+useEffect(() => {
+  const handleKeyPress = (e) => {
+    if (!selectedImage) return;
 
-      switch (e.key) {
-        case 'Escape':
-          e.preventDefault();
-          handleCloseModal();
-          break;
-        case 'ArrowRight':
-          e.preventDefault();
-          handleNextImage();
-          break;
-        case 'ArrowLeft':
-          e.preventDefault();
-          handlePrevImage();
-          break;
-        case '+':
-        case '=':
-          e.preventDefault(); // Prevent browser zoom
-          handleZoomIn();
-          break;
-        case '-':
-          e.preventDefault(); // Prevent browser zoom
-          handleZoomOut();
-          break;
-        default:
-          break;
-      }
-    };
-
-    // Add event listener when modal is open
-    if (selectedImage) {
-      document.addEventListener('keydown', handleKeyPress);
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault();
+        handleCloseModal();
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        handleNextImage();
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        handlePrevImage();
+        break;
+      case '+':
+      case '=':
+        e.preventDefault();
+        handleZoomIn();
+        break;
+      case '-':
+        e.preventDefault();
+        handleZoomOut();
+        break;
+      default:
+        break;
     }
+  };
 
-    // Cleanup function: Remove event listener when modal closes or component unmounts
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [selectedImage, handleCloseModal, handleNextImage, handlePrevImage, handleZoomIn, handleZoomOut]);
+  document.addEventListener('keydown', handleKeyPress);
+  return () => {
+    document.removeEventListener('keydown', handleKeyPress);
+  };
+}, [selectedImage, handleCloseModal, handleNextImage, handlePrevImage, handleZoomIn, handleZoomOut]);
+
 
   // Mouse wheel zoom
   useEffect(() => {
