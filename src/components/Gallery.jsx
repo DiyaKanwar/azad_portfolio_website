@@ -195,37 +195,57 @@ const VirtualizedGrid = React.memo(({ images, onImageClick, columns = 4, itemHei
 
   const offsetY = Math.floor(start / columns) * itemHeight;
 
+ const isSmall = typeof window !== 'undefined' && window.innerWidth < 640;
+
+if (isSmall) {
   return (
-    <div
-      ref={containerRef}
-      className="h-[400px] sm:h-[600px] overflow-y-auto gallery-scrollbar pr-2"
-      role="grid"
-      aria-rowcount={totalRows}
-    >
-      <div style={{ height: totalRows * itemHeight, position: 'relative' }}>
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-          style={{
-            transform: `translateY(${offsetY}px)`,
-            position: 'absolute',
-            width: '100%',
-            top: 0,
-            left: 0,
-          }}
-          role="rowgroup"
-        >
-          {visibleImages.map((img, index) => (
-            <GalleryImage
-              key={`${img.categoryIndex}-${img.imageIndex}`}
-              img={img}
-              idx={start + index}
-              onClick={onImageClick}
-            />
-          ))}
-        </div>
+    <div className="overflow-y-auto gallery-scrollbar pr-2" style={{ maxHeight: '80vh' }}>
+      <div className="grid grid-cols-2 gap-4 p-2">
+        {images.map((img, idx) => (
+          <GalleryImage
+            key={`${img.categoryIndex}-${img.imageIndex}-${idx}`}
+            img={img}
+            idx={idx}
+            onClick={onImageClick}
+          />
+        ))}
       </div>
     </div>
   );
+}
+
+return (
+  <div
+    ref={containerRef}
+    className="h-[600px] overflow-y-auto gallery-scrollbar pr-2"
+    role="grid"
+    aria-rowcount={totalRows}
+  >
+    <div style={{ height: totalRows * itemHeight, position: 'relative' }}>
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        style={{
+          transform: `translateY(${offsetY}px)`,
+          position: 'absolute',
+          width: '100%',
+          top: 0,
+          left: 0,
+        }}
+        role="rowgroup"
+      >
+        {visibleImages.map((img, index) => (
+          <GalleryImage
+            key={`${img.categoryIndex}-${img.imageIndex}`}
+            img={img}
+            idx={start + index}
+            onClick={onImageClick}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
 });
 
 
